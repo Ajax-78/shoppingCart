@@ -1,0 +1,65 @@
+<div>
+  <div class="align-table-1" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rows; let i = index">
+          <td>
+            <select [(ngModel)]="row.product" (change)="onSelectionChange(i)">
+              <option value="">Choose Product</option>
+              <option *ngFor="let product of productList" [value]="product">
+                {{ product }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="row.quantity" (change)="onSelectionChange(i)">
+              <option [ngValue]="null">Choose Quantity</option>
+              <option *ngFor="let num of quantityList" [value]="num" >
+                {{ num }}
+              </option>
+            </select>
+          </td>
+          <td>
+                <div class="addbtn " >
+                <button [ngStyle]="{ 'background-color': addedRowIndices.has(i) ? 'lightgreen' : 'transparent' }" (click)="onClickAdd(i)">ADD</button>
+                </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="show-button" style="margin-top: 10px;">
+    <button (click)="showOrder()">Show Order</button>
+  </div>
+
+
+
+   
+  <div class="align-table column" *ngIf="finalOrder && finalOrder.length > 0" style="margin-top: 20px;">
+   <h1>Your Final Order</h1>
+    <table class="table" style="margin-top: 20px;" cellpadding="8" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of finalOrder">
+          <td>{{ item.product }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="button" (click)="readFinalOrder()">What is my Order?</button>
+  </div>
+</div>

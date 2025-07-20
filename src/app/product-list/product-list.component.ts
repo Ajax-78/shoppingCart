@@ -25,7 +25,9 @@ export class ProductListComponent  {
   quantityList: number[] = [0,1, 2, 3, 4, 5];
 
   rows: Order[] = [{ product: '', quantity: null }];
+
   finalOrder: Order[] = [];
+  
   addedRowIndices: Set<number> = new Set();
 
 

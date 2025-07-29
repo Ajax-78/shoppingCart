@@ -109,7 +109,7 @@ readFinalOrder() {
       
       utterance.onend = () => {
         index++;
-        setTimeout(speakItem, 100); 
+        setTimeout(speakItem, 1000); 
       };
     }
   };

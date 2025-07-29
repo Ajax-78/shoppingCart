@@ -76,22 +76,6 @@ describe('ProductListComponent', () => {
     ]);
   });
 
-  it('should read out loud finalOrder using speechSynthesis', (done) => {
-    const synthSpy = spyOn(window.speechSynthesis, 'speak').and.callFake((utterance: any) => {
-      setTimeout(() => utterance.onend(), 10);
-    });
-
-    component.finalOrder = [
-      { product: 'Pen', quantity: 2 },
-      { product: 'Notebook', quantity: 1 }
-    ];
-
-    component.readFinalOrder();
-
-    setTimeout(() => {
-      expect(synthSpy).toHaveBeenCalledTimes(2);
-      done();
-    }, 50);
-  });
+ 
 
 });

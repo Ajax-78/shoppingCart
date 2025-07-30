@@ -28,6 +28,8 @@ export class ProductListComponent  {
 
   finalOrder: Order[] = [];
   
+  showFinalList: boolean = false;
+
   addedRowIndices: Set<number> = new Set();
 
 
@@ -42,7 +44,7 @@ export class ProductListComponent  {
 
   }
 
-  onClickAdd(index: number) {
+onClickAdd(index: number) {
   const selectedRow = this.rows[index];
 
   if (!selectedRow.product && (selectedRow.quantity === null || selectedRow.quantity === 0)) {
@@ -60,34 +62,27 @@ export class ProductListComponent  {
     return;
   }
 
-  const isDuplicate = this.finalOrder.some(order => order.product === selectedRow.product);
-  if (isDuplicate) {
-    alert("This product is already in the final order.");
+  if (selectedRow.quantity > 0) {
+    this.addedRowIndices.add(index);
+
+    // 👉 Store item in finalOrder
+    this.finalOrder.push({ ...selectedRow });
+
+    alert("Order added successfully!");
+  }
+}
+
+showOrder() {
+  if (this.finalOrder.length === 0) {
+    alert("No items have been added yet.");
     return;
   }
 
-if (!isDuplicate && selectedRow.quantity > 0) {
-     this.addedRowIndices.add(index);
-    alert("Order added successfully!");  
-  }
-
-
+  // Just trigger a flag to display finalOrder in template
+  this.showFinalList = true;
 }
 
-  showOrder() {
-      const validOrders = this.rows.filter(
-      row => row.product && row.quantity !== null && row.quantity > 0
-    );
-    
-    this.finalOrder = [];
-    for (const order of validOrders) {
-      const alreadyAdded = this.finalOrder.some(item => item.product === order.product);
-      if (!alreadyAdded) {
-        this.finalOrder.push({ ...order });
-      }
-    }
-    
-  }
+
 
 
 readFinalOrder() {

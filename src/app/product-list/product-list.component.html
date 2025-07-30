@@ -43,7 +43,7 @@
 
 
    
-  <div class="align-table column" *ngIf="finalOrder && finalOrder.length > 0" style="margin-top: 20px;">
+  <div class="align-table column" *ngIf="showFinalList" style="margin-top: 20px;">
    <h1>Your Final Order</h1>
     <table class="table" style="margin-top: 20px;" cellpadding="8" cellspacing="0">
       <thead>
@@ -59,7 +59,7 @@
         </tr>
       </tbody>
     </table>
-
+    
     <button class="button" (click)="readFinalOrder()">What is my Order?</button>
   </div>
 </div>

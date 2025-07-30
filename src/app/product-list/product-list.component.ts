@@ -27,7 +27,7 @@ export class ProductListComponent  {
   rows: Order[] = [{ product: '', quantity: null }];
 
   finalOrder: Order[] = [];
-  
+
   showFinalList: boolean = false;
 
   addedRowIndices: Set<number> = new Set();
@@ -65,7 +65,6 @@ onClickAdd(index: number) {
   if (selectedRow.quantity > 0) {
     this.addedRowIndices.add(index);
 
-    // 👉 Store item in finalOrder
     this.finalOrder.push({ ...selectedRow });
 
     alert("Order added successfully!");
@@ -78,7 +77,6 @@ showOrder() {
     return;
   }
 
-  // Just trigger a flag to display finalOrder in template
   this.showFinalList = true;
 }
 
@@ -87,6 +85,7 @@ showOrder() {
 
 readFinalOrder() {
   if (!('speechSynthesis' in window)) {
+    
     alert("Sorry, your browser does not support speech synthesis.");
     return;
   }
